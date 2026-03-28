@@ -128,7 +128,7 @@ Read the template files from `skills/auth/templates/<framework>/` and write them
 
 | Template | Target Path |
 |----------|------------|
-| (empty file) | `auth/__init__.py` |
+| `templates/flask/__init__.py` | `auth/__init__.py` |
 | `templates/flask/auth_blueprint.py` | `auth/routes.py` |
 | `templates/flask/models.py` | `auth/models.py` |
 | `templates/flask/forms.py` | `auth/forms.py` |
@@ -149,6 +149,8 @@ Read the template files from `skills/auth/templates/<framework>/` and write them
 | `templates/fastapi/auth_utils.py` | `utils/auth.py` |
 | `templates/fastapi/auth_middleware.py` | `middleware/auth.py` |
 | `templates/fastapi/env.example` | `.env.example` |
+
+**Important for FastAPI:** Create `__init__.py` files in each directory (`routers/`, `dependencies/`, `models/`, `utils/`, `middleware/`) so Python treats them as packages.
 
 **When reading templates:** Read the template file, adapt import paths to match the user's project structure, then write it to the target path. Create directories as needed using Bash (`mkdir -p`).
 
