@@ -16,17 +16,15 @@ load_dotenv()
 # ---------------------------------------------------------------------------
 # Configuration -- loaded from environment variables
 # ---------------------------------------------------------------------------
-JWT_SECRET_KEY: str = os.getenv("JWT_SECRET_KEY", "CHANGE-ME")
+JWT_SECRET_KEY: str = os.getenv("JWT_SECRET_KEY", "")
 JWT_ALGORITHM: str = os.getenv("JWT_ALGORITHM", "HS256")
 ACCESS_TOKEN_EXPIRE_MINUTES: int = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "30"))
 
-# Warn loudly if the secret has not been changed from the default
-if JWT_SECRET_KEY == "CHANGE-ME":
-    import warnings
-    warnings.warn(
-        "JWT_SECRET_KEY is set to the default value. "
-        "Set a strong, random secret in your .env file before deploying.",
-        stacklevel=2,
+# Fail fast if JWT_SECRET_KEY is not set -- never run without a real secret.
+if not JWT_SECRET_KEY:
+    raise RuntimeError(
+        "JWT_SECRET_KEY environment variable is required. "
+        "Set a strong, random secret in your .env file (e.g., openssl rand -hex 32)."
     )
 
 # ---------------------------------------------------------------------------
