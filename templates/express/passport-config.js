@@ -23,7 +23,9 @@ passport.use(
     async (email, password, done) => {
       try {
         // 1. Find the user by email.
-        const user = await User.findOne({ email: email.toLowerCase() });
+        // .select("+password") is required because the User schema
+        // has select: false on the password field.
+        const user = await User.findOne({ email: email.toLowerCase() }).select("+password");
         if (!user) {
           return done(null, false, { message: "Invalid email or password." });
         }

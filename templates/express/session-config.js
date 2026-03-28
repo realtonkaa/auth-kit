@@ -16,7 +16,12 @@ const { MongoStore } = require("connect-mongo");
 
 const sessionConfig = session({
   // Secret used to sign the session ID cookie. Must be kept private.
-  secret: process.env.SESSION_SECRET || "change-me-to-a-random-string",
+  // Throws if SESSION_SECRET is not set -- never run without a real secret.
+  secret: (() => {
+    const s = process.env.SESSION_SECRET;
+    if (!s) throw new Error("SESSION_SECRET environment variable is required.");
+    return s;
+  })(),
 
   // Do not re-save the session if it was not modified during the request.
   resave: false,

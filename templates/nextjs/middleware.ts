@@ -43,7 +43,10 @@ export async function middleware(request: NextRequest) {
   // by Better Auth is "better-auth.session_token". If you customised the
   // cookie name in your auth config, update this value accordingly.
   // -----------------------------------------------------------------------
-  const sessionToken = request.cookies.get("better-auth.session_token");
+  // Check both prefixed (HTTPS) and unprefixed cookie names.
+  const sessionToken =
+    request.cookies.get("__Secure-better-auth.session_token") ||
+    request.cookies.get("better-auth.session_token");
 
   if (!sessionToken) {
     const loginUrl = new URL("/login", request.url);

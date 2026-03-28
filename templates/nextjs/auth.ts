@@ -8,7 +8,8 @@ export const auth = betterAuth({
   // -- Secret & Base URL --------------------------------------------------
   // BETTER_AUTH_SECRET is used to sign tokens and cookies.
   // BETTER_AUTH_URL tells Better Auth the canonical URL of your app.
-  secret: process.env.BETTER_AUTH_SECRET,
+  // Throws at startup if secret is missing (fail fast, don't silently run insecure).
+  secret: process.env.BETTER_AUTH_SECRET as string,
   baseURL: process.env.BETTER_AUTH_URL,
 
   // -- Database Adapter ----------------------------------------------------
@@ -28,7 +29,7 @@ export const auth = betterAuth({
   // Option C: Connection string (uses built-in Kysely adapter)
   database: {
     url: process.env.DATABASE_URL as string,
-    // type: "sqlite",   // change to "postgres" or "mysql" as needed
+    type: "sqlite", // AUTH-KIT: change to "postgres" or "mysql" as needed
   },
 
   // -- Email & Password Authentication -------------------------------------
