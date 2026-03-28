@@ -1,6 +1,6 @@
 # AUTH-KIT TEMPLATE: FastAPI Auth Models (Pydantic + SQLAlchemy)
 # Target: models/auth.py (or app/models/auth.py)
-# Requires: pip install pydantic sqlalchemy
+# Requires: pip install pydantic[email] sqlalchemy
 
 from __future__ import annotations
 
@@ -8,7 +8,7 @@ from datetime import datetime, timezone
 
 from pydantic import BaseModel, EmailStr, Field
 from sqlalchemy import Boolean, Column, DateTime, Integer, String, create_engine
-from sqlalchemy.orm import declarative_base, sessionmaker
+from sqlalchemy.orm import DeclarativeBase, sessionmaker
 
 # ---------------------------------------------------------------------------
 # Database setup -- replace DATABASE_URL with your own or load from env
@@ -23,7 +23,8 @@ engine = create_engine(
     connect_args={"check_same_thread": False} if "sqlite" in DATABASE_URL else {},
 )
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-Base = declarative_base()
+class Base(DeclarativeBase):
+    pass
 
 
 # ---------------------------------------------------------------------------

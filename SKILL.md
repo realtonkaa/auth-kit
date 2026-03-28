@@ -94,7 +94,7 @@ pip install flask-login flask-wtf flask-bcrypt python-dotenv
 
 **FastAPI:**
 ```bash
-pip install PyJWT "pwdlib[bcrypt]" python-dotenv python-multipart
+pip install PyJWT "pwdlib[bcrypt]" "pydantic[email]" python-dotenv python-multipart
 ```
 
 Verify the install succeeded before continuing.
@@ -134,6 +134,7 @@ Read the template files from `skills/auth/templates/<framework>/` and write them
 
 | Template | Target Path |
 |----------|------------|
+| (empty file) | `auth/__init__.py` |
 | `templates/flask/auth_blueprint.py` | `auth/routes.py` |
 | `templates/flask/models.py` | `auth/models.py` |
 | `templates/flask/forms.py` | `auth/forms.py` |
@@ -141,6 +142,8 @@ Read the template files from `skills/auth/templates/<framework>/` and write them
 | `templates/flask/login.html` | `templates/auth/login.html` |
 | `templates/flask/register.html` | `templates/auth/register.html` |
 | `templates/flask/env.example` | `.env.example` |
+
+**Important:** The `auth/__init__.py` file is required for relative imports to work. Create it as an empty file.
 
 ### FastAPI (JWT) — Files to create:
 
