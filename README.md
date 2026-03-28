@@ -137,7 +137,7 @@ auth-kit/
 │   └── fastapi/             # 6 template files (JWT)
 ├── security/
 │   └── checklist.md         # Post-scaffold security checklist
-└── tests/                   # 141 tests: syntax, security, detection
+└── tests/                   # 177 tests: syntax, security, detection
 ```
 
 ## Philosophy

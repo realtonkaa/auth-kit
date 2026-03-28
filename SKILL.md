@@ -133,8 +133,8 @@ Read the template files from `skills/auth/templates/<framework>/` and write them
 | `templates/flask/models.py` | `auth/models.py` |
 | `templates/flask/forms.py` | `auth/forms.py` |
 | `templates/flask/decorators.py` | `auth/decorators.py` |
-| `templates/flask/login.html` | `templates/auth/login.html` |
-| `templates/flask/register.html` | `templates/auth/register.html` |
+| `templates/flask/templates_html/login.html` | `templates/auth/login.html` |
+| `templates/flask/templates_html/register.html` | `templates/auth/register.html` |
 | `templates/flask/env.example` | `.env.example` |
 
 **Important:** The `auth/__init__.py` file is required for relative imports to work. Create it as an empty file.
@@ -174,6 +174,8 @@ Use the Edit tool to integrate auth into existing files:
 **FastAPI:** Find the main app file (look for `app = FastAPI()`). Add:
 - `from routers.auth import router as auth_router`
 - `app.include_router(auth_router)`
+- `from middleware.auth import configure_cors` and call `configure_cors(app)`
+- Note: database tables are auto-created on first import of `models/auth.py`. For production, recommend using Alembic migrations.
 - Add CORSMiddleware if not present
 
 Also for ALL frameworks:

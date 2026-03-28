@@ -73,10 +73,10 @@ def register():
     return render_template("auth/register.html", form=form)
 
 
-@auth.route("/logout")
+@auth.route("/logout", methods=["POST"])
 @login_required
 def logout():
-    """Log the current user out."""
+    """Log the current user out. Uses POST to prevent CSRF logout attacks."""
     logout_user()
     flash("You have been logged out.", "success")
     return redirect(url_for("auth.login"))

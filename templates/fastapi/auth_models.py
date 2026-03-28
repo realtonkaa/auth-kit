@@ -85,3 +85,10 @@ class TokenData(BaseModel):
     """Decoded content of a JWT (internal use)."""
 
     sub: str | None = None
+
+
+# ---------------------------------------------------------------------------
+# Create database tables on import (for development).
+# In production, use Alembic migrations instead.
+# ---------------------------------------------------------------------------
+Base.metadata.create_all(bind=engine)

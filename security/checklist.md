@@ -3,7 +3,7 @@
 Auth-kit scaffolds these security features by default:
 
 ## Passwords
-- [x] Hashed with bcrypt or argon2 (never stored in plaintext)
+- [x] Hashed with bcrypt, argon2, or PBKDF2 (never stored in plaintext)
 - [x] Minimum 8 characters enforced
 - [x] Constant-time password comparison (prevents timing attacks)
 
