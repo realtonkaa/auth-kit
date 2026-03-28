@@ -6,9 +6,9 @@ const express = require("express");
 const passport = require("passport");
 const bcrypt = require("bcryptjs");
 
-const User = require("../models/user-model");
-const { ensureAuthenticated } = require("../middleware/auth-middleware");
-const { registerValidation, loginValidation } = require("../validation");
+const User = require("../models/User");
+const { ensureAuthenticated } = require("../middleware/auth");
+const { registerValidation, loginValidation } = require("../middleware/validation");
 const { validationResult } = require("express-validator");
 
 const router = express.Router();

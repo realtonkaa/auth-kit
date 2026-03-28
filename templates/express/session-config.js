@@ -3,7 +3,7 @@
 // Requires: npm install express-session connect-mongo
 
 const session = require("express-session");
-const MongoStore = require("connect-mongo");
+const { MongoStore } = require("connect-mongo");
 
 // ---------------------------------------------------------------------------
 // SESSION CONFIGURATION
@@ -43,7 +43,7 @@ const sessionConfig = session({
 
   // -- Session Store -------------------------------------------------------
   // Persist sessions in MongoDB so they survive server restarts.
-  store: MongoStore.create({
+  store: new MongoStore({
     mongoUrl: process.env.MONGODB_URI || "mongodb://localhost:27017/myapp",
     // Name of the MongoDB collection that holds sessions.
     collectionName: "sessions",

@@ -11,8 +11,8 @@ from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
 
-from .auth_models import User
-from .auth_utils import JWT_ALGORITHM, JWT_SECRET_KEY
+from models.auth import User
+from utils.auth import JWT_ALGORITHM, JWT_SECRET_KEY
 
 # ---------------------------------------------------------------------------
 # OAuth2 scheme -- tells FastAPI where to find the token
@@ -31,7 +31,7 @@ def get_db() -> Generator[Session, None, None]:
 
     Replace ``SessionLocal`` with your own session factory.
     """
-    from .auth_models import SessionLocal  # adjust import as needed
+    from models.auth import SessionLocal  # adjust import as needed
 
     db = SessionLocal()
     try:
