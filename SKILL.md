@@ -6,12 +6,6 @@ description: >
   library, installs dependencies, and generates secure auth code including
   routes, middleware, models, and environment templates. Use when the user
   wants to add authentication, login, signup, or user management.
-allowed-tools:
-  - Read
-  - Write
-  - Edit
-  - Bash
-  - Glob
 ---
 
 # Auth — One-Command Authentication Scaffolder
